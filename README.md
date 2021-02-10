@@ -30,7 +30,7 @@ For older versions the syntax is [different.](https://vuejs.org/v2/guide/compone
 
 The `url` property is of course reactive, so passing in any new URL will get new data.
 
-So here are some examples.
+So here are some examples. Working examples can be found in the [demo.](https://nerderer.github.io/vue-fetch-box/demo/)
 
 ```html
 <!-- Example 1 - A very basic example -->
