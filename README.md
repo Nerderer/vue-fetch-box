@@ -15,7 +15,6 @@ How do you use it? Well, import the component as any other Vue component:
 ```js
 import FetchBox from './src/FetchBox'
 
-
 export default {
   components: {
     FetchBox
