@@ -129,3 +129,8 @@ The `url` property is of course reactive, so passing in any new URL will get new
 | `data`        | The response data after a successful request |
 | `error`       | Any returned error while fetching data |
 | `isLoading`   | The loading state while doing the request |
+
+
+## Vue compatibility
+
+Vue fetch box currently only works with Vue 2.x.
