@@ -9,7 +9,7 @@ requires getting data from an API endpoint.
 It will only handle normal GET methods, which makes sense considering how it's used.
 Behind the scenes it uses Axios.
 
-It's a renderless component that will return `data`, `isLoading` and `error` as the slot scope.
+It's a renderless component that will return `data`, `isLoading` and `error` as the slot scope props.
 That's pretty much all you need, really.
 
 ## Demo
