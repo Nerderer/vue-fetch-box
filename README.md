@@ -1,7 +1,5 @@
 # Vue fetch-box
 
-[Demo.](https://nerderer.github.io/vue-fetch-box/demo/)
-
 
 
 `fetch-box` is a component for Vue where you simply pass a URL as a prop, and it'll fetch the content for you.
@@ -14,7 +12,15 @@ Behind the scenes it uses Axios.
 It's a renderless component that will return `data`, `isLoading` and `error` as the slot scope.
 That's pretty much all you need, really.
 
+## Demo
+
+[Here is a basic demo.](https://nerderer.github.io/vue-fetch-box/demo/)
+
+
+## How to use it?
+
 How do you use it? Well, import the component as any other Vue component:
+
 
 ```js
 import FetchBox from './src/FetchBox'
@@ -29,12 +35,13 @@ export default {
 You then wrap your content in a `fetch-box` which you give a URL in the `url` property.
 Using the `v-slot` directive you will get the result in `data`.
 
-Important - The `v-slot` directive is used in Vue 2.6 and new versions.
-For older versions the syntax is [different.](https://vuejs.org/v2/guide/components-slots.html)
+_Important - The `v-slot` directive is used in Vue 2.6 and new versions.
+For older versions the syntax is [different.](https://vuejs.org/v2/guide/components-slots.html)_
 
 The `url` property is of course reactive, so passing in any new URL will get new data.
 
-So here are some examples. Working examples can be found in the [demo.](https://nerderer.github.io/vue-fetch-box/demo/)
+
+## Examples
 
 ```html
 <!-- Example 1 - A very basic example -->
@@ -108,3 +115,17 @@ So here are some examples. Working examples can be found in the [demo.](https://
   </div>
 </fetch-box>
 ```
+
+## API
+
+| Component props | Description       |
+| --------------- | ----------------- |
+| `url`           | The requested url |
+
+
+
+| Slot scope props | Description   |
+| ------------- |-------------|
+| `data`        | The response data after a successful request |
+| `error`       | Any returned error while fetching data |
+| `isLoading`   | The loading state while doing the request |
