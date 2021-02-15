@@ -1,7 +1,5 @@
 # Vue fetch-box
 
-
-
 `fetch-box` is a component for Vue where you simply pass a URL as a prop, and it'll fetch the content for you.
 See it as an easy way to do AJAX request without all the manual setup. Great for prototyping or widgets that
 requires getting data from an API endpoint.
