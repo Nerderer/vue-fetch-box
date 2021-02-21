@@ -6,7 +6,7 @@ module.exports = {
   publicPath: '',
   configureWebpack: {
     entry: {
-      app: path.join(__dirname, 'demo-src', 'main.js')
+      app: path.join(__dirname, 'src/demo', 'main.js')
     }
   }
 }

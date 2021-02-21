@@ -111,7 +111,7 @@
 </template>
 
 <script>
-import FetchBox from '@/FetchBox'
+import FetchBox from '@/lib/FetchBox'
 
 export default {
   name: 'App',
