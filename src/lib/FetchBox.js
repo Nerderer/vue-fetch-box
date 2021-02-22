@@ -29,12 +29,14 @@ export default {
       axios
         .get(this.url)
         .then((response) => {
-          this.data = response.data
+          this.data = { ...response.data }
           this.error = null
+          this.$emit('success', response.data)
         })
         .catch((error) => {
           this.data = null
-          this.error = error
+          this.error = { ...error }
+          this.$emit('error', error)
         })
         .finally(() => {
           this.isLoading = false

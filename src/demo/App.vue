@@ -107,6 +107,22 @@
         </div>
       </div>
     </fetch-box>
+
+    <h4>Example 4 - Events: logging the data in the console</h4>
+
+    <fetch-box
+      v-slot="{ data }"
+      :url="`https://rickandmortyapi.com/api/character/${characterId}`"
+      @error="logError"
+      @success="logSuccess"
+    >
+      <img
+        v-if="data"
+        class="character__image"
+        :alt="data.name"
+        :src="data.image"
+      >
+    </fetch-box>
   </div>
 </template>
 
@@ -131,6 +147,12 @@ export default {
     generateError () {
       // Just some random Id that does not exist
       this.characterId = Math.random()
+    },
+    logError (error) {
+      console.log(error)
+    },
+    logSuccess (data) {
+      console.log(data)
     }
   }
 }

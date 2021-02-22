@@ -113,21 +113,50 @@ The `url` property is of course reactive, so passing in any new URL will get new
 </fetch-box>
 ```
 
+## Events
+
+You can listen to `success` and `error` events on the component.
+This is useful if you want to do something with the data outside of the component, like logging errors.
+
+```html
+<!-- Example 4 - Events -->
+
+<fetch-box
+  v-slot="{ data }"
+  url="https://rickandmortyapi.com/api/character/1"
+  @error="logError"
+  @success="logSuccess"
+>
+  <img
+    v-if="data"
+    :alt="data.name"
+    :src="data.image"
+  >
+</fetch-box>
+```
+
 ## API
 
-| Component props | Description       |
-| --------------- | ----------------- |
-| `url`           | The requested url |
+| Component props  | Description       |
+| ---------------- | ----------------- |
+| `url`            | The requested url |
 
+| Slot scope props | Description                                  |
+| ---------------- |----------------------------------------------|
+| `data`           | The response data after a successful request |
+| `error`          | Any returned error while fetching data       |
+| `isLoading`      | The loading state while doing the request    |
 
-
-| Slot scope props | Description   |
-| ------------- |-------------|
-| `data`        | The response data after a successful request |
-| `error`       | Any returned error while fetching data |
-| `isLoading`   | The loading state while doing the request |
+| Events           | Description                         | Data              |
+| ---------------- | ----------------------------------- | ----------------- |
+| `success`        | Event after a successful request    | The response data |
+| `error`          | Event after an unsuccessful request | The error         |
 
 
 ## Vue compatibility
 
 Vue fetch box currently only works with Vue 2.x.
+
+## Dependencies
+
+`fetch-box` requires Vue 2.x and Axios to work.
