@@ -155,8 +155,8 @@ This is useful if you want to do something with the data outside of the componen
 
 ## Vue compatibility
 
-Vue fetch box currently only works with Vue 2.x.
+Vue fetch-box currently only works with Vue 2.x.
 
 ## Dependencies
 
-`fetch-box` requires Vue 2.x and Axios to work.
+Vue fetch-box requires Vue 2.x and Axios to work.
