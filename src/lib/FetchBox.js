@@ -35,8 +35,14 @@ export default {
         })
         .catch((error) => {
           this.data = null
-          this.error = { ...error }
-          this.$emit('error', error)
+
+          if (error.response) {
+            this.error = { ...error.response.data }
+            this.$emit('error', error.response.data)
+          } else {
+            this.error = error
+            this.$emit('error', error)
+          }
         })
         .finally(() => {
           this.isLoading = false

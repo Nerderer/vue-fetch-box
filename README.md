@@ -15,21 +15,34 @@ That's pretty much all you need, really.
 [Here is a basic demo.](https://nerderer.github.io/vue-fetch-box/demo/)
 
 
-## How to use it?
+## Installation
 
-How do you use it? Well, import the component as any other Vue component:
+Import the component as any other Vue component:
 
 ```js
-import FetchBox from './FetchBox'
+// For Vue 2
+import FetchBox from './src/lib/FetchBox'
 
+// OR for Vue 3
+import FetchBox from './src/lib/FetchBox-Vue3'
+
+// Then register it
 export default {
   components: {
     FetchBox
-  },
+  }
 }
 ```
 
-You then wrap your content in a `fetch-box` which you give a URL in the `url` property.
+If you want to register it globally:
+
+```js
+Vue.component('FetchBox', FetchBox)
+```
+
+## Usage
+
+After installation wrap your content in a `fetch-box` which you give a URL in the `url` property.
 Using the `v-slot` directive you will get the result in `data`.
 
 _Important - The `v-slot` directive is used in Vue 2.6 and new versions.
@@ -155,8 +168,9 @@ This is useful if you want to do something with the data outside of the componen
 
 ## Vue compatibility
 
-Vue fetch-box currently only works with Vue 2.x.
+Vue fetch-box works with Vue 2 and Vue 3. Just make sure to import the matching version of Vue fetch-box, 
+as there is one file for Vue 2 and another for Vue 3.
 
 ## Dependencies
 
-Vue fetch-box requires Vue 2.x and Axios to work.
+Vue fetch-box requires Vue 2 or 3 and Axios to work.

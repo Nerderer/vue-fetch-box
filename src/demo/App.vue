@@ -96,7 +96,7 @@
           v-else-if="error"
           class="error"
         >
-          {{ error.message }}
+          {{ error.error }}
         </div>
 
         <div
