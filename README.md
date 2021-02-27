@@ -12,7 +12,7 @@ That's pretty much all you need, really.
 
 ## Demo
 
-[Here is a basic demo.](https://nerderer.github.io/vue-fetch-box/demo/)
+[Here is a basic demo.](https://nerderer.github.io/vue-fetch-box)
 
 
 ## Installation
