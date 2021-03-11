@@ -33,20 +33,6 @@
 
       <fetch-box
         v-slot="{ data }"
-        url="http://calapi.inadiutorium.cz/api/v0/en/calendars/default/today"
-      >
-        <card
-          v-if="data"
-          :title="data.weekday.toUpperCase()"
-        >
-          <div class="text-center pt-24 text-4xl">
-            {{ data.date }}
-          </div>
-        </card>
-      </fetch-box>
-
-      <fetch-box
-        v-slot="{ data }"
         url="https://aws.random.cat/meow"
       >
         <card>
