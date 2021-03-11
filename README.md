@@ -116,7 +116,7 @@ The `url` property is of course reactive, so passing in any new URL will get new
     </div>
 
     <div v-else-if="error" class="error">
-      {{ error.message }}
+      {{ error.error }}
     </div>
 
     <div v-if="isLoading" class="overlay">
@@ -153,6 +153,7 @@ This is useful if you want to do something with the data outside of the componen
 | Component props  | Description       |
 | ---------------- | ----------------- |
 | `url`            | The requested url |
+| `poll`           | Refresh data every X seconds |
 
 | Slot scope props | Description                                  |
 | ---------------- |----------------------------------------------|

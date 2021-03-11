@@ -1,257 +1,77 @@
 <template>
-  <div
-    id="app"
-    class="demo"
-  >
-    <h2>Demo</h2>
-
-    <button
-      class="button"
-      @click="generateRandomCharId"
-    >
-      Get random character
-    </button>
-
-    <button
-      class="button"
-      @click="generateError"
-    >
-      Get error
-    </button>
-
-    <h4>Example 1 - A very basic example:</h4>
-
-    <fetch-box
-      v-slot="{ data }"
-      :url="`https://rickandmortyapi.com/api/character/${characterId}`"
-    >
-      <img
-        v-if="data"
-        class="character__image"
-        :alt="data.name"
-        :src="data.image"
-      >
-    </fetch-box>
-
-    <h4>Example 2 - Showing a loader while fetching data:</h4>
-
-    <fetch-box
-      v-slot="{ data, isLoading }"
-      :url="`https://rickandmortyapi.com/api/character/${characterId}`"
-    >
-      <div class="box">
-        <div
-          v-if="data"
-          class="character"
+  <div class="bg-blue-100 min-h-screen">
+    <div class="text-center sticky inset-0 bg-white shadow-sm">
+      <ul class="inline-flex">
+        <li
+          class="header-tab font-bold"
         >
-          <img
-            class="character__image"
-            :alt="data.name"
-            :src="data.image"
-          >
-          <div>
-            <div class="character__name">
-              {{ data.name }}
-            </div>
-            <div>{{ data.species }}</div>
-            <div>{{ data.origin.name }}</div>
-          </div>
-        </div>
-
-        <div
-          v-if="isLoading"
-          class="overlay"
+          Demos:
+        </li>
+        <li
+          class="header-tab header-tab--clickable"
+          :class="{ 'text-blue-500': selectedTab === 0 }"
+          @click="setTab(0)"
         >
-          <span class="spinner" />
-        </div>
-      </div>
-    </fetch-box>
-
-    <h4>Example 3 - Showing a loader and showing errors:</h4>
-
-    <fetch-box
-      v-slot="{ data, isLoading, error }"
-      :url="`https://rickandmortyapi.com/api/character/${characterId}`"
-    >
-      <div class="box">
-        <div
-          v-if="data"
-          class="character"
+          Rick & Morty
+        </li>
+        <li
+          class="header-tab header-tab--clickable"
+          :class="{ 'text-blue-500': selectedTab === 1 }"
+          @click="setTab(1)"
         >
-          <img
-            class="character__image"
-            :alt="data.name"
-            :src="data.image"
-          >
-          <div>
-            <div class="character__name">
-              {{ data.name }}
-            </div>
-            <div>{{ data.species }}</div>
-            <div>{{ data.origin.name }}</div>
-          </div>
-        </div>
-
-        <div
-          v-else-if="error"
-          class="error"
+          Dashboard
+        </li>
+        <li
+          class="header-tab header-tab--clickable"
+          :class="{ 'text-blue-500': selectedTab === 2 }"
+          @click="setTab(2)"
         >
-          {{ error.error }}
-        </div>
+          Poll data
+        </li>
+      </ul>
+    </div>
 
-        <div
-          v-if="isLoading"
-          class="overlay"
-        >
-          <span class="spinner" />
-        </div>
-      </div>
-    </fetch-box>
-
-    <h4>Example 4 - Events: logging the data in the console</h4>
-
-    <fetch-box
-      v-slot="{ data }"
-      :url="`https://rickandmortyapi.com/api/character/${characterId}`"
-      @error="logError"
-      @success="logSuccess"
-    >
-      <img
-        v-if="data"
-        class="character__image"
-        :alt="data.name"
-        :src="data.image"
-      >
-    </fetch-box>
+    <rick-and-morty v-if="selectedTab === 0" />
+    <dashboard v-else-if="selectedTab === 1" />
+    <poll v-else-if="selectedTab === 2" />
   </div>
 </template>
 
 <script>
-import FetchBox from '@/lib/FetchBox'
+import RickAndMorty from './rick-and-morty/RickAndMorty'
+import Dashboard from './dashboard/Dashboard'
+import Poll from '@/demo/poll-data/Poll'
 
 export default {
   name: 'App',
   components: {
-    FetchBox
+    RickAndMorty,
+    Dashboard,
+    Poll
   },
   data () {
     return {
-      characterId: 1
+      selectedTab: 0
     }
   },
   methods: {
-    generateRandomCharId () {
-      // Get random character between Id 1-100.
-      this.characterId = Math.floor(Math.random() * 100) + 1
-    },
-    generateError () {
-      // Just some random Id that does not exist
-      this.characterId = Math.random()
-    },
-    logError (error) {
-      console.log(error)
-    },
-    logSuccess (data) {
-      console.log(data)
+    setTab (index) {
+      this.selectedTab = index
     }
   }
 }
 </script>
 
-<style scoped>
-.demo {
-  background: #fff;
-  padding: 32px;
-  border: 1px solid #ddd;
-  margin: 0 auto;
-  max-width: 400px;
-  border-radius: 12px;
-  font-family: sans-serif;
-  box-shadow: 2px 5px 16px 0 #999;
+<style>
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.header-tab {
+  @apply px-4 py-2;
 }
 
-.demo h2 {
-  margin-top: 0;
-}
-
-.demo h4:not(:first-of-type) {
-  margin-top: 48px;
-}
-
-.button {
-  border: 0;
-  background: blue;
-  color: white;
-  padding: 4px 8px;
-  margin-bottom: 16px;
-  margin-right: 8px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.button:hover {
-  opacity: 0.7;
-}
-
-.box {
-  background: #2d3039;
-  color: #fff;
-  border-radius: 12px;
-  box-shadow: 2px 5px 16px 0 #999;
-  min-height: 80px;
-  position: relative;
-  overflow: hidden;
-}
-
-.character {
-  display: flex;
-  align-items: center;
-}
-
-.character__image {
-  height: 80px;
-  width: 80px;
-  object-fit: contain;
-  margin-right: 16px;
-}
-
-.character__name {
-  font-weight: bold;
-}
-
-.overlay {
-  background: rgba(255, 255, 255, 0.7);
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.spinner {
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  border: 3px solid rgba(255,255,255,.3);
-  border-radius: 50%;
-  border-top-color: #fff;
-  animation: spin 1s ease-in-out infinite;
-  -webkit-animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-  to { -webkit-transform: rotate(360deg); }
-}
-@-webkit-keyframes spin {
-  to { -webkit-transform: rotate(360deg); }
-}
-
-.error {
-  text-align: center;
-  color: red;
-  padding: 32px;
+.header-tab--clickable {
+  @apply cursor-pointer hover:bg-blue-50
 }
 </style>

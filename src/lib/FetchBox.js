@@ -5,13 +5,18 @@ export default {
     url: {
       type: String,
       default: ''
+    },
+    poll: {
+      type: [Number, String],
+      default: null
     }
   },
   data () {
     return {
       isLoading: false,
       data: null,
-      error: null
+      error: null,
+      pollInterval: null
     }
   },
   watch: {
@@ -20,7 +25,24 @@ export default {
         this.doRequest()
       },
       immediate: true
+    },
+    poll: {
+      handler (value) {
+        const seconds = parseFloat(value)
+
+        if (seconds) {
+          this.pollInterval = setInterval(() => {
+            this.doRequest()
+          }, seconds * 1000)
+        } else {
+          clearInterval(this.pollInterval)
+        }
+      },
+      immediate: true
     }
+  },
+  destroyed () {
+    clearInterval(this.pollInterval)
   },
   methods: {
     doRequest () {
